@@ -8,7 +8,10 @@ public class Solution {
         System.out.println(malesOnly(Person.persons()));
         namesOnly(Person.persons()).forEach(System.out::println);
         sortedByIncomeDesc().forEach(System.out::println);
-        System.out.println(distinctGender());
+        System.out.println("Distinct Genders are " + distinctGender());
+        System.out.println();
+        System.out.println("First three people on the list");
+        firstThreePeople().forEach(System.out::println);
 
     }
 
@@ -55,4 +58,16 @@ public class Solution {
                 .toList();
         return genders;
     }
+
+//    5. **Limit (Intermediate Operation):**
+//            - Limit the list of persons to the first 3.
+    static List<Person> firstThreePeople(){
+        List<Person> top3 = Person.persons()
+                .stream()
+                .limit(3)
+                .toList();
+
+        return top3;
+    }
+
 }
