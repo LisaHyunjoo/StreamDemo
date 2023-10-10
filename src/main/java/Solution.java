@@ -8,6 +8,8 @@ public class Solution {
         System.out.println(malesOnly(Person.persons()));
         namesOnly(Person.persons()).forEach(System.out::println);
         sortedByIncomeDesc().forEach(System.out::println);
+        System.out.println(distinctGender());
+
     }
 
 //   1. **Filtering (Intermediate Operation):**
@@ -41,5 +43,16 @@ public class Solution {
 //                .sorted(Comparator.comparing(Person::getIncome).thenComparing(Person::getName)
 //                .toList();
         return sortedList;
+    }
+
+//    4. **Distinct (Intermediate Operation):**
+//            - Find the distinct genders in the list of persons.
+    static List<Person.Gender> distinctGender(){
+        List<Person.Gender> genders = Person.persons()
+                .stream()
+                .map(Person::getGender)
+                .distinct()
+                .toList();
+        return genders;
     }
 }
