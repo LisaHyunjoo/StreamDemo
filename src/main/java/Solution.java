@@ -24,9 +24,12 @@ public class Solution {
         System.out.println(combinedPeople());
         System.out.println("If any person's income is greater than 8000.0? " + anyMatchWithIncome());
         System.out.println("Are all people male? " +areALllPeopleMale());
-        System.out.println("Is there a person with zero income? " + noneHaveZeroIncome());
+        System.out.println("None people have zero income: " + noneHaveZeroIncome());
         System.out.println("There are " + countFemale() + " female(s).");
         System.out.println("First person in the list is " + findFirstPerson());
+        System.out.println("Find any person: " + findAnyPerson());
+        System.out.println("Person with highest income is : " + personWithHighestIncome());
+
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -142,7 +145,7 @@ public class Solution {
     static boolean noneHaveZeroIncome(){
         return Person.persons()
                 .stream()
-                .noneMatch(p->p.getIncome() ==0);
+                .noneMatch(p-> p.getIncome()==0.0);
     }
 
 //13. **Count (Terminal Operation):**
@@ -161,6 +164,25 @@ public class Solution {
                 .stream()
                 .findFirst()
                 .map(Person::getName);
+    }
+
+//    1. **FindAny (Terminal Operation):**
+//            - Find any person in the list.
+    static Optional<Person> findAnyPerson(){
+        return Person.persons()
+                .stream()
+                .findAny();
+    }
+
+//    16 **Max (Terminal Operation):**
+//            - Find the person with the highest income.
+    static Optional<Person> personWithHighestIncome() {
+        return Person.persons()
+                .stream()
+                .max(Comparator.comparingDouble(Person::getIncome));
+//                .min(Comparator.comparingDouble(Person::getIncome));
+
+
     }
 
 }
