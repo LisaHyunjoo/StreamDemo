@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,6 +26,7 @@ public class Solution {
         System.out.println("Are all people male? " +areALllPeopleMale());
         System.out.println("Is there a person with zero income? " + noneHaveZeroIncome());
         System.out.println("There are " + countFemale() + " female(s).");
+        System.out.println("First person in the list is " + findFirstPerson());
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -150,6 +152,15 @@ public class Solution {
                 .stream()
                 .filter(Person::isFemale)
                 .count();
+    }
+
+//    14. **FindFirst (Terminal Operation):**
+//            - Find the first person in the list.
+    static Optional<String> findFirstPerson(){
+        return Person.persons()
+                .stream()
+                .findFirst()
+                .map(Person::getName);
     }
 
 }
