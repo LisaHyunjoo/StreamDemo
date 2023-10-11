@@ -1,9 +1,12 @@
+import com.sun.source.doctree.SeeTree;
+
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Solution {
     public static void main(String[] args) {
@@ -22,6 +25,7 @@ public class Solution {
         displayNames();
         System.out.println();
         System.out.println(AllCharsInNames());
+        System.out.print(combinedPersons());
 
     }
 
@@ -109,6 +113,13 @@ public class Solution {
                 .collect(Collectors.toList());
     }
 
+//    9. **Concatenating Streams (Intermediate Operation):**
+//            - Create a new stream by concatenating two lists of persons.
+    static List<Person> combinedPersons(){
+        List<Person> combinedPersons = Stream.concat(Person.persons().stream(), Person.persons().stream())
+               .collect(Collectors.toList());
+       return combinedPersons;
+    }
 
 
 
