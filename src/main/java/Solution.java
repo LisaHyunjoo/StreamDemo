@@ -31,6 +31,7 @@ public class Solution {
         System.out.println(malesAndFemales());
 //        System.out.println(calculateIncome());
         System.out.println(allNamesInStr());
+        System.out.println("Total income is " + totalIncome());
 
     }
 
@@ -210,6 +211,16 @@ public class Solution {
                 .stream()
                 .map(Person::getName)
                 .collect(Collectors.joining("," ));
+    }
+
+//    21. **Reducing (Collector):**
+//            - Calculate the total income of all persons.
+    static double totalIncome(){
+        return Person.persons()
+                .stream()
+                .map(Person::getIncome)
+                .reduce(0.0, (a,b)->a+b);
+//                .collect(Collectors.reducing(0.0, Person::getIncome, Double::sum));
     }
 }
 
