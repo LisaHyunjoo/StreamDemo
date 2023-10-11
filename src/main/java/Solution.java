@@ -1,10 +1,5 @@
-import com.sun.source.doctree.SeeTree;
-
-import java.sql.SQLOutput;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,7 +20,8 @@ public class Solution {
         displayNames();
         System.out.println();
         System.out.println(AllCharsInNames());
-        System.out.print(combinedPersons());
+        System.out.println(combinedPeople());
+        System.out.println(anyMatchWithIncome());
 
     }
 
@@ -115,12 +111,19 @@ public class Solution {
 
 //    9. **Concatenating Streams (Intermediate Operation):**
 //            - Create a new stream by concatenating two lists of persons.
-    static List<Person> combinedPersons(){
+    static List<Person> combinedPeople(){
         List<Person> combinedPersons = Stream.concat(Person.persons().stream(), Person.persons().stream())
                .collect(Collectors.toList());
        return combinedPersons;
     }
 
+//    10. **AnyMatch (Terminal Operation):**
+//            - Check if any person's income is greater than 8000.0.
+    static boolean anyMatchWithIncome(){
+        return Person.persons()
+                .stream()
+                .anyMatch(p -> p.getIncome() > 8000);
+    }
 
 
 }
