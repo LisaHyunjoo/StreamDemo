@@ -1,7 +1,4 @@
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,7 +21,7 @@ public class Solution {
         System.out.println(AllCharsInNames());
         System.out.println(combinedPeople());
         System.out.println("If any person's income is greater than 8000.0? " + anyMatchWithIncome());
-        System.out.println("Are all people male? " +areALllPeopleMale());
+        System.out.println("Are all people male? " + areALllPeopleMale());
         System.out.println("None people have zero income: " + noneHaveZeroIncome());
         System.out.println("There are " + countFemale() + " female(s).");
         System.out.println("First person in the list is " + findFirstPerson());
@@ -32,6 +29,8 @@ public class Solution {
         System.out.println("Person with highest income is : " + personWithHighestIncome());
         System.out.println(personByGender());
         System.out.println(malesAndFemales());
+//        System.out.println(calculateIncome());
+        System.out.println(allNamesInStr());
 
     }
 
@@ -109,75 +108,76 @@ public class Solution {
                 .forEach(System.out::println);
 
     }
-//
+
+    //
 //    8. **FlatMap (Intermediate Operation):**
 //            - Map each person to a stream of characters representing their names.
-    static List<Character> AllCharsInNames(){
+    static List<Character> AllCharsInNames() {
         return Person.persons()
                 .stream()
-                .flatMap(p -> p.getName().chars().mapToObj(c -> (char)c))
+                .flatMap(p -> p.getName().chars().mapToObj(c -> (char) c))
                 .collect(Collectors.toList());
     }
 
-//    9. **Concatenating Streams (Intermediate Operation):**
+    //    9. **Concatenating Streams (Intermediate Operation):**
 //            - Create a new stream by concatenating two lists of persons.
-    static List<Person> combinedPeople(){
+    static List<Person> combinedPeople() {
         List<Person> combinedPersons = Stream.concat(Person.persons().stream(), Person.persons().stream())
-               .collect(Collectors.toList());
-       return combinedPersons;
+                .collect(Collectors.toList());
+        return combinedPersons;
     }
 
-//    10. **AnyMatch (Terminal Operation):**
+    //    10. **AnyMatch (Terminal Operation):**
 //            - Check if any person's income is greater than 8000.0.
-    static boolean anyMatchWithIncome(){
+    static boolean anyMatchWithIncome() {
         return Person.persons()
                 .stream()
                 .anyMatch(p -> p.getIncome() > 8000);
     }
 
-//11. **AllMatch (Terminal Operation):**
+    //11. **AllMatch (Terminal Operation):**
 //            - Check if all persons are male.
-    static boolean areALllPeopleMale(){
+    static boolean areALllPeopleMale() {
         return Person.persons()
                 .stream()
                 .allMatch(Person::isMale);
     }
 
-//    12. **NoneMatch (Terminal Operation):**
+    //    12. **NoneMatch (Terminal Operation):**
 //            - Check if none of the persons have zero income.
-    static boolean noneHaveZeroIncome(){
+    static boolean noneHaveZeroIncome() {
         return Person.persons()
                 .stream()
-                .noneMatch(p-> p.getIncome()==0.0);
+                .noneMatch(p -> p.getIncome() == 0.0);
     }
 
-//13. **Count (Terminal Operation):**
+    //13. **Count (Terminal Operation):**
 //            - Count the number of persons.
-    static int countFemale(){
+    static int countFemale() {
         return (int) Person.persons()
                 .stream()
                 .filter(Person::isFemale)
                 .count();
     }
 
-//    14. **FindFirst (Terminal Operation):**
+    //    14. **FindFirst (Terminal Operation):**
 //            - Find the first person in the list.
-    static Optional<String> findFirstPerson(){
+    static Optional<String> findFirstPerson() {
         return Person.persons()
                 .stream()
                 .findFirst()
                 .map(Person::getName);
     }
 
-//    1. **FindAny (Terminal Operation):**
+    //    1. **FindAny (Terminal Operation):**
 //            - Find any person in the list.
-    static Optional<Person> findAnyPerson(){
+    static Optional<Person> findAnyPerson() {
         return Person.persons()
                 .stream()
                 .findAny();
     }
 
-//    16 **Max (Terminal Operation):**
+    //    16 **Max (Terminal Operation):**
 //            - Find the person with the highest income.
 //    17 **Min (Terminal Operation):**
 //            - Find the person with the lowest income.
@@ -188,7 +188,7 @@ public class Solution {
 //                .min(Comparator.comparingDouble(Person::getIncome));
     }
 
-//    18. Group the persons by gender.
+    //    18. Group the persons by gender.
 //            - Partition the persons into male and female.
     static Map<Person.Gender, List<Person>> personByGender(){
         return Person.persons()
@@ -197,11 +197,19 @@ public class Solution {
     }
 
     //    19. **PartitioningBy (Collector):**
-    static Map<Boolean, List<Person>> malesAndFemales(){
+    static Map<Boolean, List<Person>> malesAndFemales() {
         return Person.persons()
                 .stream()
                 .collect(Collectors.partitioningBy(Person::isMale));
     }
 
-
+//      20. **Joining (Collector):**
+//            - Join the names of all persons into a single string.
+    static String allNamesInStr(){
+        return Person.persons()
+                .stream()
+                .map(Person::getName)
+                .collect(Collectors.joining("," ));
+    }
 }
+
