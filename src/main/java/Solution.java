@@ -23,7 +23,7 @@ public class Solution {
         System.out.println(combinedPeople());
         System.out.println("If any person's income is greater than 8000.0? " + anyMatchWithIncome());
         System.out.println("Are all people male? " +areALllPeopleMale());
-
+        System.out.println("Is there a person with zero income? " + noneHaveZeroIncome());
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -134,5 +134,12 @@ public class Solution {
                 .allMatch(Person::isMale);
     }
 
+//    12. **NoneMatch (Terminal Operation):**
+//            - Check if none of the persons have zero income.
+    static boolean noneHaveZeroIncome(){
+        return Person.persons()
+                .stream()
+                .noneMatch(p->p.getIncome() ==0);
+    }
 
 }
