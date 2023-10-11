@@ -24,6 +24,7 @@ public class Solution {
         System.out.println("If any person's income is greater than 8000.0? " + anyMatchWithIncome());
         System.out.println("Are all people male? " +areALllPeopleMale());
         System.out.println("Is there a person with zero income? " + noneHaveZeroIncome());
+        System.out.println("There are " + countFemale() + " female(s).");
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -140,6 +141,15 @@ public class Solution {
         return Person.persons()
                 .stream()
                 .noneMatch(p->p.getIncome() ==0);
+    }
+
+//13. **Count (Terminal Operation):**
+//            - Count the number of persons.
+    static int countFemale(){
+        return (int) Person.persons()
+                .stream()
+                .filter(Person::isFemale)
+                .count();
     }
 
 }
