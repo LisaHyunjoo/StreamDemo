@@ -31,6 +31,7 @@ public class Solution {
         System.out.println("Find any person: " + findAnyPerson());
         System.out.println("Person with highest income is : " + personWithHighestIncome());
         System.out.println(personByGender());
+        System.out.println(malesAndFemales());
 
     }
 
@@ -187,11 +188,20 @@ public class Solution {
 //                .min(Comparator.comparingDouble(Person::getIncome));
     }
 
-//    18. **PartitioningBy (Collector):**
+//    18. Group the persons by gender.
 //            - Partition the persons into male and female.
     static Map<Person.Gender, List<Person>> personByGender(){
         return Person.persons()
                 .stream()
                 .collect(Collectors.groupingBy(Person::getGender));
     }
+
+    //    19. **PartitioningBy (Collector):**
+    static Map<Boolean, List<Person>> malesAndFemales(){
+        return Person.persons()
+                .stream()
+                .collect(Collectors.partitioningBy(Person::isMale));
+    }
+
+
 }
