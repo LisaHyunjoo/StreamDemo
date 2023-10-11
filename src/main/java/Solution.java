@@ -21,7 +21,8 @@ public class Solution {
         System.out.println();
         System.out.println(AllCharsInNames());
         System.out.println(combinedPeople());
-        System.out.println(anyMatchWithIncome());
+        System.out.println("If any person's income is greater than 8000.0? " + anyMatchWithIncome());
+        System.out.println("Are all people male? " +areALllPeopleMale());
 
     }
 
@@ -123,6 +124,14 @@ public class Solution {
         return Person.persons()
                 .stream()
                 .anyMatch(p -> p.getIncome() > 8000);
+    }
+
+//11. **AllMatch (Terminal Operation):**
+//            - Check if all persons are male.
+    static boolean areALllPeopleMale(){
+        return Person.persons()
+                .stream()
+                .allMatch(Person::isMale);
     }
 
 
