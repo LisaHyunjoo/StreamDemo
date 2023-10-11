@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -29,6 +30,7 @@ public class Solution {
         System.out.println("First person in the list is " + findFirstPerson());
         System.out.println("Find any person: " + findAnyPerson());
         System.out.println("Person with highest income is : " + personWithHighestIncome());
+        System.out.println(personByGender());
 
     }
 
@@ -176,13 +178,20 @@ public class Solution {
 
 //    16 **Max (Terminal Operation):**
 //            - Find the person with the highest income.
+//    17 **Min (Terminal Operation):**
+//            - Find the person with the lowest income.
     static Optional<Person> personWithHighestIncome() {
         return Person.persons()
                 .stream()
                 .max(Comparator.comparingDouble(Person::getIncome));
 //                .min(Comparator.comparingDouble(Person::getIncome));
-
-
     }
 
+//    18. **PartitioningBy (Collector):**
+//            - Partition the persons into male and female.
+    static Map<Person.Gender, List<Person>> personByGender(){
+        return Person.persons()
+                .stream()
+                .collect(Collectors.groupingBy(Person::getGender));
+    }
 }

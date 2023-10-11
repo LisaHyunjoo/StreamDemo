@@ -34,7 +34,6 @@
 - Find the person with the highest income.
 
 17 **Min (Terminal Operation):**
-
 - Find the person with the lowest income.
 
 18 **GroupingBy (Collector):**
