@@ -38,7 +38,7 @@ public class Solution {
         parallelStream();
         iterateNum();
         System.out.println(unorderedPeople());
-
+        System.out.println(limitAndSkip());
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -276,5 +276,14 @@ public class Solution {
                 .collect(Collectors.toList());
     }
 
+//    28. **Limiting and Skipping (Intermediate Operation):**
+//            - Use limit and skip to process only the second and third persons.
+    static List<Person> limitAndSkip() {
+        return Person.persons()
+                .stream()
+                .skip(1)
+                .limit(2)
+                .collect(Collectors.toList());
+    }
 }
 
