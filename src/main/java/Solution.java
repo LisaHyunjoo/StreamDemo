@@ -33,6 +33,7 @@ public class Solution {
         System.out.println(allNamesInStr());
         System.out.println("Total income is " + totalIncome());
         System.out.println(highestIncome());
+        System.out.println(idToPersonMap());
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -229,6 +230,14 @@ public class Solution {
         return (Optional.ofNullable(Person.persons()
                 .stream()
                 .collect(Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingDouble(Person::getIncome)), Optional::get))));
+    }
+
+//    23. **ToMap (Collector):**
+//            - Create a map of persons where the key is the ID and the value is the person.
+    static Map<Long, Person> idToPersonMap() {
+        return Person.persons()
+                .stream()
+                .collect(Collectors.toMap(Person::getId, p -> p));
     }
 }
 
