@@ -32,7 +32,7 @@ public class Solution {
 //        System.out.println(calculateIncome());
         System.out.println(allNamesInStr());
         System.out.println("Total income is " + totalIncome());
-
+        System.out.println(highestIncome());
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -221,6 +221,14 @@ public class Solution {
                 .map(Person::getIncome)
                 .reduce(0.0, (a,b)->a+b);
 //                .collect(Collectors.reducing(0.0, Person::getIncome, Double::sum));
+    }
+
+//    22. **CollectingAndThen (Collector):**
+//            - Find the person with the highest income using CollectingAndThen.
+    static Optional<Person> highestIncome() {
+        return (Optional.ofNullable(Person.persons()
+                .stream()
+                .collect(Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparingDouble(Person::getIncome)), Optional::get))));
     }
 }
 
