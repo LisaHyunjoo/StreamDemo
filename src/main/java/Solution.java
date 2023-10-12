@@ -34,6 +34,7 @@ public class Solution {
         System.out.println("Total income is " + totalIncome());
         System.out.println(highestIncome());
         System.out.println(idToPersonMap());
+        System.out.println(personSet());
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -238,6 +239,14 @@ public class Solution {
         return Person.persons()
                 .stream()
                 .collect(Collectors.toMap(Person::getId, p -> p));
+    }
+
+//    24. **ToSet (Collector):**
+//            - Convert the list of persons to a set.
+    static Set<Person> personSet() {
+        return Person.persons()
+                .stream()
+                .collect(Collectors.toSet());
     }
 }
 
