@@ -37,6 +37,7 @@ public class Solution {
         System.out.println(personSet());
         parallelStream();
         iterateNum();
+        System.out.println(unorderedPeople());
 
     }
 
@@ -264,6 +265,15 @@ public class Solution {
 //            - Use iterate to create a stream of 10 integers starting from 1.
     static void iterateNum() {
         Stream.iterate(1, n->n+1).limit(10).forEach(System.out::println);
+    }
+
+//    27. **Unordered (Intermediate Operation):**
+//            - Use unordered to create an unordered stream of the list of persons.
+    static List<Person> unorderedPeople(){
+        return Person.persons()
+                .stream()
+                .unordered()
+                .collect(Collectors.toList());
     }
 
 }
