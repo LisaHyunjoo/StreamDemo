@@ -39,6 +39,7 @@ public class Solution {
         iterateNum();
         System.out.println(unorderedPeople());
         System.out.println(limitAndSkip());
+        System.out.println(calculate());
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -284,6 +285,18 @@ public class Solution {
                 .skip(1)
                 .limit(2)
                 .collect(Collectors.toList());
+    }
+
+//29. **SummarizingDouble (Collector):**
+//            - Calculate the sum, average, max, and min of incomes.
+    static double calculate(){
+        return Person.persons()
+                .stream()
+                .collect(Collectors.summarizingDouble(Person::getIncome))
+//                .getSum();
+//                .getMax();
+//                .getAverage();
+                .getMin();
     }
 }
 
