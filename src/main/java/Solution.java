@@ -35,6 +35,7 @@ public class Solution {
         System.out.println(highestIncome());
         System.out.println(idToPersonMap());
         System.out.println(personSet());
+        parallelStream();
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -248,5 +249,14 @@ public class Solution {
                 .stream()
                 .collect(Collectors.toSet());
     }
+
+    // 25. **Parallel Stream (Intermediate Operation):**
+//            - Use parallel stream to process the list of persons.
+    static void parallelStream(){
+        Person.persons()
+                .parallelStream()
+                .forEach(p -> System.out.println("Processing: " + p));
+    }
+
 }
 
