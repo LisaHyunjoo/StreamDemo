@@ -36,6 +36,8 @@ public class Solution {
         System.out.println(idToPersonMap());
         System.out.println(personSet());
         parallelStream();
+        iterateNum();
+
     }
 
     //   1. **Filtering (Intermediate Operation):**
@@ -256,6 +258,12 @@ public class Solution {
         Person.persons()
                 .parallelStream()
                 .forEach(p -> System.out.println("Processing: " + p));
+    }
+
+//    26. **Iterating (Intermediate Operation):**
+//            - Use iterate to create a stream of 10 integers starting from 1.
+    static void iterateNum() {
+        Stream.iterate(1, n->n+1).limit(10).forEach(System.out::println);
     }
 
 }
